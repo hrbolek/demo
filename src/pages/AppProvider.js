@@ -5,8 +5,8 @@ import { store, GroupActions } from 'reducers/_main';
 
 const dispatch = store.dispatch
 export const actions = {
-    ongroupupdate: (g) => dispatch(GroupActions.group_update(g)),
-    ongroupadd: (g) => dispatch(GroupActions.group_add(g)),
+    onGroupUpdate: (g) => dispatch(GroupActions.group_update(g)),
+    onGroupAdd: (g) => dispatch(GroupActions.group_add(g)),
 }
 
 export const AppProvider = (props) => {
