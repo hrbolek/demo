@@ -1,13 +1,13 @@
 import { createSlice } from '@reduxjs/toolkit'
 
-import { AddItem, DeleteItem, ReplaceItem, UpdateItem } from './arrayreducers';
+import { CreateItem, RemoveItem, ReplaceItem, UpdateItem } from './keyedreducers';
 
 export const GroupSlice = createSlice({
     name: 'groups',
     initialState: [],
     reducers: {
-        group_add: AddItem,
-        group_delete: DeleteItem,
+        group_add: CreateItem,
+        group_delete: RemoveItem,
         group_replace: ReplaceItem,
         group_update: UpdateItem
     }

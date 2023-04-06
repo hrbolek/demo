@@ -1,6 +1,6 @@
 import { Trash } from 'react-bootstrap-icons';
-import { TextInput } from 'components/TextInput';
-import { DeleteButton } from 'components/DeleteButton';
+import { TextInput, TextInput2 } from 'components/TextInput';
+import { DeleteButton, DeleteButton2 } from 'components/DeleteButton';
 
 export const GroupMemberRow = ({index, user, actions}) => {
     
@@ -9,19 +9,41 @@ export const GroupMemberRow = ({index, user, actions}) => {
         console.log("clicked")
         console.log(user)
     }
+
     const onChangeEmail = (value) => {
         console.log("onChangeEmail")
         console.log(user, value)
+        if (actions.onEmailChange) {
+            actions.onEmailChange(user.id, value)
+        }
     }
-
+    const onChangeSurname = (value) => {
+        //console.log("onChangeEmail")
+        //console.log(user, value)
+        if (actions.onUserUpdate) {
+            actions.onUserUpdate({...user, surname: value})
+        }
+    }
+    const onChangeName = (value) => {
+        //console.log("onChangeEmail")
+        //console.log(user, value)
+        if (actions.onUserUpdate) {
+            actions.onUserUpdate({...user, name: value})
+        }
+    }
     return (
         <tr>
             <td>{index}</td>
-            <td>{user.name}</td>
-            <td>{user.surname}</td>
-            <td><TextInput id={user.id} value={user.email} onChange={onChangeEmail}/></td>
             <td>
-                <DeleteButton onClick={onclick}><Trash /></DeleteButton>
+                <TextInput2 placeholder={"jméno"} id={user.id} value={user.name} onChange={onChangeName}/>
+            </td>
+            <td>
+                <TextInput2 placeholder={"příjmení"} id={user.id} value={user.surname} onChange={onChangeSurname}/>
+            </td>
+            <td><TextInput2 placeholder={"email"} id={user.id} value={user.email} onChange={onChangeEmail}/></td>
+            <td>
+                <DeleteButton2 onClick={onclick}><Trash /> Smaž</DeleteButton2>
+                
             </td>
         </tr>
     )

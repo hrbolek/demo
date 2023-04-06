@@ -22,8 +22,28 @@ export const GroupPage = ({id}) => {
         console.log(filteredMembers)
     }
 
+    const onEmailChange = (id, email) => {
+        const updatedMembers = group.memberships.map(
+            (user) => user.id !== id ? user : {...user, email: email}
+        )
+        const newState = {...group, memberships: updatedMembers}
+        setGroup(newState)
+        console.log(updatedMembers)
+    }
+
+    const onUserUpdate = (u) => {
+        const updatedMembers = group.memberships.map(
+            (user) => user.id !== u.id ? user : {...user, ...u}
+        )
+        const newState = {...group, memberships: updatedMembers}
+        setGroup(newState)
+        console.log(updatedMembers)
+    }
+
     const actions = {
-        onDeleteMember: onDeleteMember
+        onDeleteMember: onDeleteMember,
+        onEmailChange: onEmailChange,
+        onUserUpdate: onUserUpdate
     }
 
     if (group) {

@@ -12,18 +12,7 @@ const GroupFetchHelper = async (id, query, dispatch, getState) => {
     const jsonData = await response.json()
     const groupData = jsonData.GroupById
 
-    const state = getState()
-    const groups = state.groups
-
-    const group = groups.find(
-        (g) => g.id === groupData.id
-    )
-
-    if (group) {
-        dispatch(GroupActions.group_update(group))
-    } else {
-        dispatch(GroupActions.group_add(group))
-    }
+    dispatch(GroupActions.group_update(groupData))
 
     return groupData
 }
@@ -34,15 +23,17 @@ const GroupFetchHelper = async (id, query, dispatch, getState) => {
  * @returns 
  */
 export const GroupFetch = (id) => (dispatch, getState) => {
-
     const bodyfunc = async () => {
-
         const groupData = await GroupFetchHelper(id, GroupQuerySmall, dispatch, getState)
         
-        if (group.type !== "") {
+        if (group.type !== "cd49e152-610c-11ed-9f29-001a7dda7110") {
             await GroupFetchHelper(id, GroupQueryLarge, dispatch, getState)
         }
     }
+    return bodyfunc()
+}
 
-    bodyfunc()
+export const GroupUpdate = (group) => (dispatch, getState) => {
+    const bodyfunc = async () => {}
+    return bodyfunc()
 }

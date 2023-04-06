@@ -1,5 +1,24 @@
 import { useState, useCallback } from 'react';
 
+export const DeleteButton2 = ({children, onClick}) => {
+    const [visible, setVisible] = useState(false)
+    const changeState = useCallback(
+        () => setVisible(!visible),
+        [setVisible])
+    if (visible) {
+        return (
+            <>
+                <button className='btn btn-sm btn-warning' onClick={changeState}>{children}</button>
+                <button className='btn btn-sm btn-danger' onClick={onClick}>{children}</button>
+            </>
+        )
+    } else {
+        return (
+            <button className='btn btn-sm btn-warning' onClick={changeState}>{children}</button>
+        )
+    }
+}
+
 /**
  * This is Delete Button with confirmation (two state button).
  * @param {*} children
