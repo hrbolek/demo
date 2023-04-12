@@ -1,9 +1,9 @@
+import { v1 as uuid1 } from 'uuid';
 
-
-export const AddItem = (state, action) => {
+export const CreateItem = (state, action) => {
     const item = action.payload;
 
-    const result = [...state, item]
+    const result = [...state, {id: uuid1(), ...item}]
     return result
 }
 
@@ -28,12 +28,3 @@ export const UpdateItem = (state, action) => {
     return result
 }
 
-// export const PickItem = (state, action) => {
-//     const item = action.payload;
-//     const id = item.id;
-//     const resultA = state.map(i => i?.__selected ? {...i, __selected: false}: i)
-//     const result = resultA.map(i => i.id === id ? {...i, __selected: true}: i)
-//     return result
-// }
-
-// export const FindTheItem = (state) => state.find(i => i.__selected)

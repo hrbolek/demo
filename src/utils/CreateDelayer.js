@@ -1,10 +1,15 @@
+/**
+ * Vytvari zpozdovac,
+ * @param {*} delay 
+ * @returns 
+ */
 export const CreateDelayer = (delay=300) => {
     //lokalni promenna
     let oldTimer = -1;
     let state = 0;
 
     //navratovou hodnotou je funkce umoznujici zpozdeni volani
-    return (delayedFunc, callback = () => null) => {
+    return (delayedFunc) => {
         /*
         //https://stackoverflow.com/questions/26150232/resolve-javascript-promise-outside-the-promise-constructor-scope
         implement as function returning a Promise:
@@ -29,8 +34,7 @@ export const CreateDelayer = (delay=300) => {
         const encapsulatedFunc = () => {
             oldTimer = -1;
             state = 0;
-            delayedFunc();
-            callback(); // volani "after" funkce, v podstate notifikace, ze "done"
+            return delayedFunc(); // obvykle delayedFunc() vraci Promise, takze lze pouzit .then, .catch a .finally
         }
 
         //ocekavame zpozdene volani funkce

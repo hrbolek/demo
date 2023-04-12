@@ -365,4 +365,14 @@ export const SingleGroup = {
     ]
 }
 
-export const fakeQueryGroup = async (id) => ({json: () => SingleGroup})
+/**
+ * "Jakoze" dotaz na server, ma shodnou signaturu s "pravym" dotazem.
+ * stringify a parse je pouzito pro uplnou kopii promenne, aby se nevracela stale stejna skupina, pri modifikaci obsahu by to delalo problemy.
+ * @param {*} id 
+ * @returns 
+ */
+export const fakeQueryGroup = async (id) => ({json: () => {
+    const json = JSON.stringify(SingleGroup)
+    const result = JSON.parse(json)
+    return {'groupById': {...result, id: id }}
+}})

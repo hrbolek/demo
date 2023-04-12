@@ -1,16 +1,37 @@
 import { Provider } from 'react-redux'
+import { configureStore } from '@reduxjs/toolkit'
 
-import { store, GroupActions } from 'reducers/_main';
-import { GroupFetch, GroupUpdate } from 'reducers/GroupFetch';
+import { bindGroupActions } from 'reducers/_main';
+import { GroupReducer } from 'reducers/groupreducers'; 
+
+/**
+ * Toto je hlavni store pro celou aplikaci. Zde zacleneno pro demonstraci. 
+ */
+export const store = configureStore(
+    { 
+        reducer: {
+            groups: GroupReducer
+        }, 
+        preloadedState: {
+            groups: {}
+        }
+})
 
 const dispatch = store.dispatch
+
+/**
+ * Vsechny akce / callbacky pro celou aplikaci
+ * Lze je kdekoliv importovat a vyuzit. 
+ * Je ovsem zadouci, aby se tyto dostaly ke "spodnim" komponentam pres props.
+ * Tim se zabezpeci jejich "purity" (nejsou zavisle na globalnich parametrech)
+ */
 export const actions = {
-    onGroupUpdate: (g) => dispatch(GroupActions.group_update(g)),
-    onGroupAdd: (g) => dispatch(GroupActions.group_add(g)),
-    GroupLoad: (id) => dispatch(GroupFetch(id)),
-    GroupUpdate: (g) => dispatch(GroupUpdate(g))
+    ...bindGroupActions(dispatch)
 }
 
+/**
+ * Zapouzdruje vnorene komponenty a umoznuje jim vyuzivat store - centralni data
+ */
 export const AppProvider = (props) => {
     return (
         <Provider store={store}>
