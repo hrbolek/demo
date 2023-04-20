@@ -20,7 +20,7 @@ export const GroupMembersTable = ({group, actions}) => {
             </thead>
             <tbody>
                 {group?.memberships?.map(
-                    (u, index) => <GroupMemberTableRow key={u.id} user={u} index={index + 1} actions={actions} gid={group.id}/>
+                    (m, index) => <GroupMemberTableRow key={m.user.id} user={m.user} index={index + 1} actions={actions} gid={group.id}/>
                 )}
             </tbody>
         </table>

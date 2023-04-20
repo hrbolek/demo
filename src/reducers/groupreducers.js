@@ -9,10 +9,12 @@ import { CreateItem, DeleteItem, ReplaceItem, UpdateItem, SelectItem } from './k
  * @returns 
  */
 const GroupMemberRemove = (state, action) => {
+    console.log('volani stavove funkce, smazat uzivatele')
     const g = action.payload.group
     const u = action.payload.user
+    console.log(u)
     const group = state[g.id]
-    group.memberships = group.memberships.filter(user => user.id !== u.id)
+    group.memberships = group.memberships.filter(m => m.user.id !== u.id)
     return state
 }
 

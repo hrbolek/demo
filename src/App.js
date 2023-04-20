@@ -12,7 +12,7 @@ function App() {
     <div className="App">
       
       <AppProvider>
-        <GroupPageProvider id="21bb312e-ac37-11ed-9bd8-0242ac110002" />
+        <GroupPageProvider id="2c1e4410-b1c5-11ed-8fd2-0242ac110002" />
       </AppProvider>
     </div>
   );

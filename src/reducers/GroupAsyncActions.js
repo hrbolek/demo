@@ -11,16 +11,23 @@ import { fakeQueryGroup }  from 'queries/fakequerygroup'
  */
 export const GroupFetchHelper = (id, query, resultselector, dispatch, getState) => {
     const log = (text) => (p) => {
-        //console.log(text)
-        //console.log(JSON.stringify(p))
+        console.log(text)
+        console.log(JSON.stringify(p))
         return p
     }
     const p = query(id)
         .then(
-            response => log('received')(response.json()),
+            response => response.json(),
             error => error
-            //error
-            )
+        )
+        .then(
+            j => log('incomming')(j)
+        )
+        // .then(
+        //     response => log('received')(response.json()),
+        //     error => error
+        //     //error
+        //     )
         .then(
             json => log('converted')(resultselector(json)),
             error => error
@@ -39,7 +46,7 @@ export const GroupFetchHelper = (id, query, resultselector, dispatch, getState) 
  * @returns 
  */
 export const GroupFetch = (id) => (dispatch, getState) => {
-    const groupSelector = (json) => json.groupById
+    const groupSelector = (json) => json.data.groupById
     const bodyfunc = async () => {
         let groupData = await GroupFetchHelper(id, GroupQuerySmall, groupSelector, dispatch, getState)
         

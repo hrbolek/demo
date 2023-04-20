@@ -2,6 +2,8 @@ import { Trash } from 'react-bootstrap-icons';
 import { TextInput } from 'components/TextInput';
 import { DeleteButton } from 'components/DeleteButton';
 
+
+import { GroupMemberRemoveButton } from './GroupMemberRemoveButton';
 /**
  * One member as a table row
  * @param {*} param0 
@@ -55,7 +57,8 @@ export const GroupMemberTableRow = ({index, user, actions, gid}) => {
                 <TextInput placeholder={"email"} id={user.id} value={user.email} onChange={onChangeEmail}/>
             </td>
             <td>
-                <DeleteButton onClick={onclick}><Trash /> Smaž</DeleteButton>
+                <DeleteButton onClick={onclick}><Trash /> Smaž</DeleteButton><br/>
+                <GroupMemberRemoveButton group={{id: gid}} user={user} actions={actions} />
             </td>
         </tr>
     )

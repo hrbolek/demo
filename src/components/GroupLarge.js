@@ -6,6 +6,8 @@ import { GroupSubgroupsCard } from "./GroupSubgroupsCard";
 
 /**
  * Renders a card describing a group im detailed form.
+ * @param {*} param0 
+ * @returns 
  */
 export const GroupLarge = ({group, actions}) => {
     return (

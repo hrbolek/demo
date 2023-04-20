@@ -23,10 +23,15 @@ export const GroupPageProvider = ({id}) => {
     const group = groups[id] //|| {id: id}
 
     //console.log(group)
+    console.log('prekresleni')
+    if (group?.memberships) {
+        console.log(group.memberships)
+    }
+    
     useEffect(
         () => {
             console.log('GroupPageProvider refetch ' + id)
-            actions.groupFakeFetch(id)           
+            actions.groupFetch(id)           
         }, [id, selectedId]
     )
 
